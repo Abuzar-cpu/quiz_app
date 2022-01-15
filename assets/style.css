@@ -55,10 +55,15 @@ button:hover
 {
     display: flex;
     justify-content: center;
-
     color: #fff;
+    width: fit-content;
+    transition: all linear 0.5s;
 }
 
+#score:hover
+{
+    font-size: 2em;
+}
 
 #start
 {    
