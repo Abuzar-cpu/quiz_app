@@ -1,0 +1,64 @@
+#card-container{
+    background-color: transparent;
+    border-radius: 15px;
+}
+
+.card
+{
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+body
+{
+    background: linear-gradient(to right, #23074d, #cc5333); 
+}
+
+.card-body
+{
+    border-radius: 15px;
+    background: linear-gradient(to right, #00b09b, #96c93d); 
+    color: #fff;
+}
+
+button
+{
+    width: 10rem;
+    height: 5rem;
+    background-color: transparent;
+    border: none;
+    transition: all linear 0.5s;
+}
+
+button:hover
+{
+    background-color: burlywood;
+    color: #FFF;
+}
+
+#correct
+{
+    background-color: lime;
+}
+
+#wrong
+{
+    background-color: red;
+}
+
+#score
+{
+    display: flex;
+    justify-content: center;
+
+    color: #fff;
+}
+
+
+#start
+{    
+    display: flex;
+    justify-content: center;
+
+    color: #fff;
+}
