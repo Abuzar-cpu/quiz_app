@@ -59,6 +59,15 @@ button:hover
 {    
     display: flex;
     justify-content: center;
-
     color: #fff;
+}
+
+.con
+{
+    margin-top: 20vh;
+}
+
+#question
+{
+    font-weight: bold;
 }
