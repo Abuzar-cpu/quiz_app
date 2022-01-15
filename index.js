@@ -42,47 +42,74 @@ q9 = new Question("Is there diverse cuisine in SF?", "t");
 q10 = new Question("Is San Francisco surrounded by incredible nature?", "t");
 
 questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+
 let idx = 0;
-let questionNumber = 1;
-let currentQuestion;
-let questionOnScreen = document.getElementById("question");
-let buttons = document.getElementsByTagName("button");
+// let currentQuestion = questions[idx];
+let gameStarted = false;
 let score = 0;
 
-
-let checkAnswer = (answerElement) => 
+let start = () =>
 {
-    let answer = answerElement.innerText[0].toLowerCase();
-    if(answer === currentQuestion.answer)
-    {
-        idx++;
-        score++;
-        console.log("True");
-        changeQuestion();
-    }
-    else
-    {
-        idx++;
-        // console.log("False");
-        changeQuestion();
-    }
+    idx = 0;
+    document.getElementById("question").innerText = (idx + 1) + ". " + questions[idx].text;
+    gameStarted = true;
+    document.getElementById("start").style.visibility = "hidden";
 }
 
-let changeQuestion = () =>
+let checkAnswer = (userAnswer) =>
 {
-    if(idx >= questions.length)
+    if(!gameStarted)
     {
-        // idx=0;
+        alert("Please start the game to see the questions");
         return;
     }
-    currentQuestion = questions[idx];
-    questionOnScreen.innerText = questionNumber++ + ". " + currentQuestion.text;
-    document.getElementById("score").innerText = "Your score: " + score;
+
+    else if (gameOver())
+    {
+        document.getElementById("question").innerText = "End of the game";
+        document.getElementById("question").style.color = "brown";
+        alert("Game has ended. PLease check your score :)");
+    }
+
+    userAnswer = userAnswer.innerText[0].toLowerCase();
+
+    if(questions[idx].answer === userAnswer)
+    {
+        idx += 1;
+        score += 1;
+        document.getElementById("score").innerText = "Your score: " + score;
+        changeQuestion(idx);
+    }
+
+    else
+    {
+        idx += 1;
+        changeQuestion(idx);
+    }
 }
 
-let start = (st) =>
-{
-    currentQuestion = questions[idx];
-    questionOnScreen.innerText = questionNumber++ + ". " + currentQuestion.text;
-    st.style.visibility = "hidden";
+function changeQuestion(index) {
+    try{
+        document.getElementById("question").innerText = (index + 1) + ". " +questions[index].text;
+    } catch (err)
+    {
+
+    }
+}
+
+function restart() {
+    document.location.reload();
+}
+
+function gameOver() {
+    if(idx == questions.length)
+    {
+        document.getElementById("start").style.visibility = "visible";
+        document.getElementById("start").style.color = "white";
+        document.getElementById("start").style.cursor = "pointer";
+        document.getElementById("start").innerText = "Restart";
+        document.getElementById("start").setAttribute("onclick", "restart()");
+        return true;
+    }
+    return false;
 }
